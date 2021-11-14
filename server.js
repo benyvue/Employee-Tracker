@@ -159,6 +159,18 @@ function addDepartment() {
   });
 };
 
+function newDepartment(data) {
+  db.query("INSERT INTO department SET ?", {
+    name: data.name
+    },
+    function (error, res) {
+      if (error) throw error;
+    });
+
+      endOrMain();
+};
+
+
 // Add Employee
 function addEmployee() {
   inquirer.prompt(
@@ -191,6 +203,19 @@ function addEmployee() {
   });
 };
 
+function newEmployee(data) {
+  db.query("INSERT INTO employee SET ?", {
+    first_name: data.firstName,
+    last_name: data.lastName,
+    role_id: data.title,
+    manager_id: data.manager
+  }, function (error, res) {
+    if (error) throw error;
+  });
+endOrMain();
+}
+
+
 // Add Role
 function addRole() {
   inquirer.prompt(
@@ -216,5 +241,16 @@ function addRole() {
   .then(function (response) {
     addNewRole(response);
   });
+};
+
+function addNewRole(data) {
+db.query("INSERT INTO role SET ?", {
+  title: data.title,
+  salary: data.salary,
+  department_id: data.id
+  }, function (error, res) {
+    if (error) throw error;
+  });
+endOrMain();
 };
 // End functions for adding
