@@ -229,7 +229,6 @@ function addRole() {
       type: "input",
       message: "What is the salary of the new role?",
       name: "salary"
-
     },
     {
       type: "list",
@@ -251,6 +250,55 @@ db.query("INSERT INTO role SET ?", {
   }, function (error, res) {
     if (error) throw error;
   });
-endOrMain();
+  endOrMain();
 };
 // End functions for adding
+
+
+// Function for updating employee role
+function updateRole() {
+  inquirer.prompt(
+    [
+      {
+        type: "list",
+        message: "Which employee is updating their role?",
+        name: "employeeID",
+        choices: employees
+      },
+      {
+        type: "list",
+        message: "What is the new role?",
+        name: "titleID",
+        choices: roles
+      }
+    ])
+    .then(function (response) {
+      updateEmployeesRole(response);
+    });
+};
+
+function updateEmployeesRole(data) {
+  db.query(`UPDATE employee SET role_id = ${data.titleID} WHERE id =${data.employeeID}`,
+    function (error, res) {
+      if (error) throw error;
+    });
+  endOrMain();
+};
+
+
+// Function to end or return to main menu
+function endOrMain() {
+  inquirerConfirm("Do you want to continue?")
+    .then(function confirmed() {
+      initialPrompt();
+    }, function cancelled() {
+      end();
+    });
+};
+
+
+function end() {
+  console.log("Exiting Employee Manager");
+  db.end();
+  process.exit();
+};

@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS employee;
 CREATE TABLE department (
     id INT AUTO_INCREMENT NOT NULL,
     name VARCHAR(30) NOT NULL,
+    description TEXT,
     PRIMARY KEY(id)
 );
 
