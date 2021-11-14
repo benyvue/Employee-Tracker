@@ -114,3 +114,107 @@ function mainMenu(options) {
       end();
   };
 };
+
+
+// Functions for viewing, section
+// View all Departments
+function viewAllDepartments() {
+  db.query("SELECT * FROM department", function (error, res) {
+    console.table(res);
+    endOrMain();
+  });
+};
+
+// View all Roles
+function viewAllRoles() {
+  db.query("SELECT * FROM role", function (error, res) {
+    console.table(res);
+    endOrMain();
+  });
+};
+
+// View all Employees
+function viewAllEmployees() {
+  db.query("SELECT * FROM employee", function (error, res) {
+    console.table(res);
+    endOrMain();
+  });
+};
+// End functions for viewing 
+
+
+// Functions for adding, section
+// Add Department
+function addDepartment() {
+  inquirer.prompt(
+  [
+    {
+      type: "input",
+      message: "What is the new department name?",
+      name: "name"
+    }
+  ])
+  .then(function (response) {
+    newDepartment(response);
+  });
+};
+
+// Add Employee
+function addEmployee() {
+  inquirer.prompt(
+    [
+      {
+        type: 'input',
+        message: "What is the employee's first name?",
+        name: "firstName",
+      },
+      {
+        type: 'input',
+        message: "What is the employee's last name?",
+        name: "lastName",
+      },
+      {
+        type: "list",
+        message: "What is the title of the employee?",
+        name: "title",
+        choices: roles
+      },
+      {
+        type: "list",
+        message: "Who is the manager of the employee?",
+        name: "manager",
+        choices: employees
+      }
+  ])
+  .then(function (response) {
+    newEmployee(response);
+  });
+};
+
+// Add Role
+function addRole() {
+  inquirer.prompt(
+  [
+    {
+      type: "input",
+      message: "What is the name of the new role?",
+      name: "title"
+    },
+    {
+      type: "input",
+      message: "What is the salary of the new role?",
+      name: "salary"
+
+    },
+    {
+      type: "list",
+      message: "Which department is the new role in?",
+      name: "id",
+      choices: departments
+    }
+  ])
+  .then(function (response) {
+    addNewRole(response);
+  });
+};
+// End functions for adding
