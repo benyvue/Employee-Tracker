@@ -10,18 +10,16 @@
   * [Questions/Inquiries](#Questions/Inquiries)
 
   ## Built with
-  JavaScript, HTML, CSS, Express.js, UUID, nodemon
+  JavaScript, mysql2, inquirer, inquirer-confirm, console.table
 
   ## Description
-  Note-Taker is an application for taking notes. You can add a title and then in the main body type away what you want to put in your note. Then you can save it and access it later. You can also delete notes as needed
+  Employee-Tracker is an application for creating a database for tracking current statuses of employees. Information such as salary, departments, job titles etc. can be edited in this application. The purpose of this application is to help organize data for employees in a database format. 
 
   ## Installation Instructions 
-  Clone the repository via github. Then you would need to install node.js if you don't already have it. Type in npm install into the command line to install your node modules. After doing so you also would need to download express.js via your command line by typing "npm i express". You would also need uuid so do another npm install by typing "npm i uuid". To deploy the application you would also need heroku, so head over to the heroku.com and download the heroku cli. Once that is done you need to push the code application to heroku. First create a heroku url by typing "heroku create" in the command line. Then you can push to heroku by typing "git push heroku main" to push the code toyour heroku deployed app. The active link that ends in "herokuapp.com/" will be the link that takes you to your app. Enjoy.
+  Clone the repository via github. Then you would need to install node.js if you don't already have it. Once you have installed node.js, type npm install into the command line to install your node modules. You would also need to download MySql for database storage. Click [here](https://coding-boot-camp.github.io/full-stack/mysql/mysql-installation-guide) for a step by step on how to install MySql.
 
   ## Usage Instructions
-
-
-
+   Once you finish downloading all the required dependencies, go to the command line and type "npm start". From there you can start editing your employee information as the prompts appear.
 
   ## Contributing Members
   Ben Vue
@@ -29,12 +27,15 @@
   ## Testing 
    N/A
 
+  ## Preview of app final product
+  ![Application in action](./assets/images/employee-tracker)
+
+  ## Link to video of application in action
+  Click [here](https://watch.screencastify.com/v/gAHPnP4N5SrIo5iGusaC) for a video of the applicaion in action. 
+
   ### GitHub Profile
-  [GitHub Profile](http://github.com/benyvue)
+  [benyvue](http://github.com/benyvue)
 
   ### Email
   Please reach me at the provided email with any questions. bvue012@gmail.com
   
-SELECT role.*, department.name AS department
-    -> FROM role
-    -> LEFT JOIN department ON role.department_id = department.id;

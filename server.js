@@ -127,7 +127,11 @@ function viewAllDepartments() {
 
 // View all Roles
 function viewAllRoles() {
-  db.query("SELECT * FROM role", function (error, res) {
+  const sql = `SELECT role.*, department.name AS department
+               FROM role
+               LEFT JOIN department ON role.department_id = department.id;`
+
+  db.query(sql, function (error, res) {
     console.table(res);
     endOrMain();
   });
@@ -161,6 +165,11 @@ function addDepartment() {
       type: "input",
       message: "What is the new department name?",
       name: "name"
+    },
+    {
+      type: "input",
+      message: "Please provide a description of the new department.",
+      name: "description"
     }
   ])
   .then(function (response) {
@@ -170,7 +179,8 @@ function addDepartment() {
 
 function newDepartment(data) {
   db.query("INSERT INTO department SET ?", {
-    name: data.name
+    name: data.name,
+    description: data.description
     },
     function (error, res) {
       if (error) throw error;
@@ -204,7 +214,8 @@ function addEmployee() {
         type: "list",
         message: "Who is the manager of the employee?",
         name: "manager",
-        choices: employees
+        choices: employees,
+        default: false
       }
   ])
   .then(function (response) {
@@ -253,7 +264,7 @@ function addRole() {
 
 function addNewRole(data) {
 db.query("INSERT INTO role SET ?", {
-  title: data.title,
+  job_title: data.title,
   salary: data.salary,
   department_id: data.id
   }, function (error, res) {
