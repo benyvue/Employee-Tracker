@@ -5,7 +5,7 @@ VALUES
     ('Shekel Finance', 'The Shekel Finance department deals with finances in the form of shekels.'),
     ('Magic Legal', 'The Magic Legal department deals with magic laws and legality in the world of magic.');
 
-INSERT INTO role (title, salary, department_id)
+INSERT INTO role (job_title, salary, department_id)
 VALUES
     ('Magician Sales Lead', 100000, 1),
     ('Magician Salesperson', 80000, 1),
@@ -17,10 +17,11 @@ VALUES
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id) 
 VALUES
-    ('Benny', 'Vue', 1, 'Mommy Boss'),
-    ('Nkaujlaim', 'Vang', 2, 'Daddy Boss'),
+    ('Benny', 'Vue', 1, 1),
+    ('Nkaujlaim', 'Vang', 2, 2),
     ('Boi', 'Thao', 3, null),
-    ('Timy', 'Moua', 4, 'Mommy Boss'),
+    ('Timy', 'Moua', 4, 3),
     ('Kash', 'Lor', 5, null),
     ('Paoshee', 'Thao', 6, null),
-    ('Alis', 'Vue', 7, 'Grandma Boss');
+    ('Alis', 'Vue', 7, 3),
+    ('Allen', 'Master', 4, 1);

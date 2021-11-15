@@ -135,7 +135,16 @@ function viewAllRoles() {
 
 // View all Employees
 function viewAllEmployees() {
-  db.query("SELECT * FROM employee", function (error, res) {
+  const sql = `SELECT employee.*, 
+               role.job_title, 
+               role.salary, 
+               role.department_id, 
+               department.name AS department
+               FROM employee
+               LEFT JOIN role ON employee.role_id = role.id
+               LEFT JOIN department ON role.department_id = department.id`
+               
+  db.query(sql, function (error, res) {
     console.table(res);
     endOrMain();
   });
@@ -187,7 +196,7 @@ function addEmployee() {
       },
       {
         type: "list",
-        message: "What is the title of the employee?",
+        message: "What is the job title of the employee?",
         name: "title",
         choices: roles
       },
